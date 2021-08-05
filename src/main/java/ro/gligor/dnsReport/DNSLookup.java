@@ -187,16 +187,17 @@ public class DNSLookup {
     }
 
     public static List<String> getDKIMKeys(String domain) throws TextParseException {
-        //list of common DKIM selector
-        final List<String> commonSelectors = Arrays.asList("selector1", "selector2", "google", "gsuite", "smtp", "mandrill", "cm", "ep1",
-                "zendesk1", "zendesk2", "krs", "m1", "k1", "0", "mx", "pic", "mg", "200608", "10dkim1", "smtpapi","s1", "s2", "cs", "mailo", "bmdeda", "strong1",
-                "strong2", "feedblitz", "dk", "hs1", "hs2", "intercom", "mail", "dkim", "pardot", "netsuite", "gs", "gs2", "rmagnet", "turbo-smtp", "etouches",
-                "fdm", "fd", "fd2", "fddkim", "s1024", "biz", "biz2", "kesq", "kesp", "veeva", "dynect", "lessonly", "fidelizador", "sign", "crisp", "masterbase",
-                "newsletter2go", "key1", "virtrugw", "auth", "ink", "ink2", "rs-dkim", "dkim1024", "lithium", "community", "pm", "mailjet", "qualtrics",
-                "neolane", "ecm1", "ecm2", "rmail", "veinteractive", "csod", "v6dk1", "vx", "bb1", "bb2", "flexmail", "splio", "gt", "gt2", "sc", "spop1024",
-                "_conversica", "conversica", "poppulo", "gears", "default");
+        //list of common DKIM selector 91 total selectors
+        final List<String> commonSelectors = Arrays.asList("selector1", "selector2", "google", "gsuite", "smtp",
+                "mandrill", "cm", "ep1", "zendesk1", "zendesk2", "krs", "m1", "k1", "0", "mx", "pic", "mg", "200608",
+                "10dkim1", "smtpapi","s1", "s2", "cs", "mailo", "bmdeda", "strong1", "strong2", "feedblitz", "dk",
+                "hs1", "hs2", "intercom", "mail", "dkim", "pardot", "netsuite", "gs", "gs2", "rmagnet", "turbo-smtp", "etouches",
+                "fdm", "fd", "fd2", "fddkim", "s1024", "biz", "biz2", "kesq", "kesp", "veeva", "dynect", "lessonly",
+                "fidelizador", "sign", "crisp", "masterbase", "newsletter2go", "key1", "virtrugw", "auth", "ink",
+                "ink2", "rs-dkim", "dkim1024", "lithium", "community", "pm", "mailjet", "qualtrics", "neolane", "ecm1",
+                "ecm2", "rmail", "veinteractive", "csod", "v6dk1", "vx", "bb1", "bb2", "flexmail", "splio", "gt", "gt2", "sc",
+                "spop1024", "_conversica", "conversica", "poppulo", "gears", "default");
         List<String> DKIMKeys = new ArrayList<>();
-
 
         //check if there are CNAME instances of the DKIM selectors and remove the selectors fom the list
         for (String s : commonSelectors) {
@@ -214,7 +215,7 @@ public class DNSLookup {
             }
         }
 
-        if(DKIMKeys.isEmpty()){
+        if(DKIMKeys.isEmpty() || DKIMKeys.size() == commonSelectors.size()){
             return null;
         }
         return DKIMKeys;
