@@ -1,0 +1,37 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="DNS Report:jar">
+    <output-path>$USER_HOME$/Desktop</output-path>
+    <root id="archive" name="DNS Report.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="DNS Report" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/camel/camel-dns/3.10.0/camel-dns-3.10.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-base/18-ea+1/javafx-base-18-ea+1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/camel/camel-management-api/3.10.0/camel-management-api-3.10.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/dnsjava/dnsjava/3.3.1/dnsjava-3.3.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.7.32/slf4j-api-1.7.32.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/camel/camel-util/3.10.0/camel-util-3.10.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/itextpdf/itextpdf/5.5.13.2/itextpdf-5.5.13.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/camel/camel-support/3.10.0/camel-support-3.10.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/camel/camel-cloud/3.10.0/camel-cloud-3.10.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/camel/camel-api/3.10.0/camel-api-3.10.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-base/18-ea+1/javafx-base-18-ea+1-win.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/camel/camel-core-processor/3.10.0/camel-core-processor-3.10.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/camel/camel-core-model/3.10.0/camel-core-model-3.10.0.jar" path-in-jar="/" />
+      <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.32" />
+      <element id="library" level="project" name="Maven: org.apache.camel:camel-dns:3.10.0" />
+      <element id="library" level="project" name="Maven: org.apache.camel:camel-cloud:3.10.0" />
+      <element id="library" level="project" name="Maven: org.apache.camel:camel-core-model:3.10.0" />
+      <element id="library" level="project" name="Maven: org.apache.camel:camel-api:3.10.0" />
+      <element id="library" level="project" name="Maven: org.apache.camel:camel-core-processor:3.10.0" />
+      <element id="library" level="project" name="Maven: org.apache.camel:camel-support:3.10.0" />
+      <element id="library" level="project" name="Maven: org.apache.camel:camel-management-api:3.10.0" />
+      <element id="library" level="project" name="Maven: org.apache.camel:camel-util:3.10.0" />
+      <element id="library" level="project" name="Maven: dnsjava:dnsjava:3.3.1" />
+      <element id="library" level="project" name="Maven: com.itextpdf:itextpdf:5.5.13.2" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-base:18-ea+1" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-base:win:18-ea+1" />
+    </root>
+  </artifact>
+</component>
