@@ -1,4 +1,4 @@
-package ro.gligor.dnsReport;
+package ro.gligor.dnsreport;
 
 import com.itextpdf.text.DocumentException;
 import javafx.application.Platform;
@@ -9,11 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import org.xbill.DNS.Record;
-import org.xbill.DNS.TextParseException;
+
 import java.io.FileNotFoundException;
-import java.util.Arrays;
-import java.util.List;
 
 import javafx.application.Application;
 
@@ -61,9 +58,7 @@ public class DNSReport extends Application{
 
         try {
             writer.createDocument(domain);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (DocumentException e) {
+        } catch (FileNotFoundException | DocumentException e) {
             e.printStackTrace();
         }
 

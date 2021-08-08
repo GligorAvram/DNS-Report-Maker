@@ -1,4 +1,4 @@
-package ro.gligor.dnsReport;
+package ro.gligor.dnsreport;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +55,7 @@ public class SPFNode {
         if(!lookups.isEmpty()){
             for (SPFNode s: lookups
                  ) {
+                ParagraphLine.totalLookups++;
                 s.buildReport(tree);
             }
         }

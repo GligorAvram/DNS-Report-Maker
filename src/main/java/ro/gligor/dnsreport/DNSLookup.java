@@ -1,16 +1,14 @@
-package ro.gligor.dnsReport;
+package ro.gligor.dnsreport;
 
 import org.xbill.DNS.Record;
 import org.xbill.DNS.*;
 
 import java.net.UnknownHostException;
 import java.util.*;
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.stream.Collectors;
 
+//lass does not need to be instantiated
 public class DNSLookup {
-
-
+    private DNSLookup(){}
 
     public static List<String> getSPFRecord(String domain) throws TextParseException {
         List<String> SPFRecordList = new ArrayList<>();
@@ -52,29 +50,6 @@ public class DNSLookup {
             }
 
         return MXRecords;
-    }
-
-    public static boolean getARecords(String domain) throws TextParseException {
-
-        List<String> aRecords = new ArrayList<>();
-
-        Record[] records;
-
-            Lookup lookup = new Lookup(domain, Type.A);
-            records = lookup.run();
-
-        return lookup.getResult() == Lookup.SUCCESSFUL && records.length > 0;
-    }
-
-    public static boolean getAAAARecords(String domain) throws TextParseException {
-        List<String> aRecords = new ArrayList<>();
-
-        Record[] records;
-
-            Lookup lookup = new Lookup(domain, Type.AAAA);
-            records = lookup.run();
-
-        return lookup.getResult() == Lookup.SUCCESSFUL && records.length > 0;
     }
 
     public static List<Record> getDMARCRecord(String domain) throws TextParseException {

@@ -1,8 +1,10 @@
-package ro.gligor.dnsReport;
+package ro.gligor.dnsreport;
 
 public class ParagraphLine {
     private final int depth;
     private final String line;
+
+    public static int totalLookups;
 
     public ParagraphLine(int depth, String line) {
         this.depth = depth;

@@ -1,4 +1,4 @@
-package ro.gligor.dnsReport;
+package ro.gligor.dnsreport;
 
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -15,8 +15,6 @@ import java.util.List;
 
 public class PdfWriterClass {
 
-    //todo print in the document when something went wrong parsing the records
-    //todo records don't have spaces in between the words. FIX IT. <- first priority after making the spf tree
     public void createDocument(String domain) throws FileNotFoundException, DocumentException {
 
         JFileChooser fc = new JFileChooser();
@@ -94,7 +92,6 @@ public class PdfWriterClass {
                 report.add(new Paragraph("The domain might not have an SPF record.", errorFont));
             }
             if(spfRecord.size() > 1){
-                //todo case study: check if this changes everything after as well
                 report.add(new Paragraph("Domain has more than one SPF record", errorFont));
             }
             for (String spf: spfRecord
@@ -113,7 +110,10 @@ public class PdfWriterClass {
         try {
             SPFNode rootNode = DNSLookup.spfHierarchy(domain, 1);
             List<ParagraphLine> traversedTree= DNSLookup.traverse(rootNode);
-            if(traversedTree.size() > 1) {
+            if(!traversedTree.isEmpty()) {
+                Paragraph totalLookups = new Paragraph("\n\nNumber of lookups: " + ParagraphLine.totalLookups + "\n\n");
+                report.add(totalLookups);
+
 
                 for (ParagraphLine p : traversedTree
                 ) {
@@ -236,9 +236,10 @@ public class PdfWriterClass {
             case Type.A:
                 return "A";
             case Type.AAAA:
-                return "AAAA";}
-
-        return "Record type not found";
+                return "AAAA";
+            default:
+                return "Record type not found";
+        }
     }
 
 
