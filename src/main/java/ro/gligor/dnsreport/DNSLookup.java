@@ -55,8 +55,9 @@ public class DNSLookup {
     public static List<Record> getDMARCRecord(String domain) throws TextParseException {
         List<Record> dmarc = new ArrayList<>();
         Record[] records;
+        String nameSpace = "_dmarc";
 
-        records = new Lookup("_dmarc." + domain, Type.CNAME).run();
+        records = new Lookup(nameSpace + domain, Type.CNAME).run();
 
         if (records != null && records.length > 0) {
             dmarc.addAll(Arrays.asList(records));
@@ -69,12 +70,12 @@ public class DNSLookup {
             return dmarc;
         }
         else{
-            records = new Lookup("_dmarc." + domain, Type.NS).run();
+            records = new Lookup(nameSpace + domain, Type.NS).run();
 
             if(records != null && records.length >0){
                 dmarc.addAll(Arrays.asList(records));
             }
-            records= new Lookup("_dmarc." + domain, Type.TXT).run();
+            records= new Lookup(nameSpace + domain, Type.TXT).run();
             if(records != null && records.length >0){
                 dmarc.addAll(Arrays.asList(records));
             }
@@ -86,7 +87,6 @@ public class DNSLookup {
         }
         return dmarc;
     }
-
 
     public static SPFNode spfHierarchy(String domain, int depth) throws UnknownHostException {
 
@@ -142,11 +142,8 @@ public class DNSLookup {
                     s.toLowerCase(Locale.ROOT).equals("mx")){
                 node.addNonNode(s);
             }
-            else if(s.toLowerCase(Locale.ROOT).startsWith("ptr:") || s.toLowerCase(Locale.ROOT).equals("ptr")){
-                SPFNode newNode = spfHierarchy(s, depth +1);
-                node.addNode(newNode);
-            }
-            else if(s.toLowerCase(Locale.ROOT).startsWith("exists:") || s.toLowerCase(Locale.ROOT).startsWith("include:") ||
+            else if(s.toLowerCase(Locale.ROOT).startsWith("ptr:") || s.toLowerCase(Locale.ROOT).equals("ptr") ||
+                    s.toLowerCase(Locale.ROOT).startsWith("exists:") || s.toLowerCase(Locale.ROOT).startsWith("include:") ||
                     s.toLowerCase(Locale.ROOT).startsWith("?include:") || s.toLowerCase(Locale.ROOT).startsWith("redirect=")){
                 SPFNode newNode = spfHierarchy(s, depth +1);
                 node.addNode(newNode);
@@ -174,17 +171,17 @@ public class DNSLookup {
                 "spop1024", "_conversica", "conversica", "poppulo", "gears", "default");
         List<String> DKIMKeys = new ArrayList<>();
 
-        //check if there are CNAME instances of the DKIM selectors and remove the selectors fom the list
+        Record[] dkimRecords;        //check if there are CNAME instances of the DKIM selectors and remove the selectors fom the list
         for (String s : commonSelectors) {
-            Record[] records;
             String key = s + "._domainkey." + domain;
-            records = new Lookup(key, Type.CNAME).run();
-            if(records != null && records.length > 0){
+
+            dkimRecords = new Lookup(key, Type.CNAME).run();
+            if(dkimRecords != null && dkimRecords.length > 0){
                 DKIMKeys.add(key);
             }
             else{
-                records = new Lookup(key, Type.TXT).run();
-                if(records != null && records.length > 0){
+                dkimRecords = new Lookup(key, Type.TXT).run();
+                if(dkimRecords != null && dkimRecords.length > 0){
                     DKIMKeys.add(key);
                 }
             }

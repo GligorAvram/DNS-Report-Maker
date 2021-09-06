@@ -36,7 +36,7 @@ public class DNSReport extends Application{
 
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage){
         primaryStage.setTitle("DNS Report Maker");
 
         VBox layout = new VBox();
@@ -64,8 +64,6 @@ public class DNSReport extends Application{
 
         domainField.setText("");
     }
-
-
 }
 
 

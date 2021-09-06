@@ -47,17 +47,13 @@ public class SPFNode {
     public void buildReport(List<ParagraphLine> tree) {
         tree.add(new ParagraphLine(depth, domain));
         if(!IPs.isEmpty()){
-            for (String s: IPs
-            ) {
-                tree.add(new ParagraphLine(depth +1, s));
-            }
+            IPs.forEach(str-> tree.add(new ParagraphLine(depth +1, str)));
         }
         if(!lookups.isEmpty()){
-            for (SPFNode s: lookups
-                 ) {
+            lookups.forEach(spfNode -> {
                 ParagraphLine.totalLookups++;
-                s.buildReport(tree);
-            }
+                spfNode.buildReport(tree);
+            });
         }
     }
 }

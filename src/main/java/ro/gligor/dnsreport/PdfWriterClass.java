@@ -111,9 +111,7 @@ public class PdfWriterClass {
             SPFNode rootNode = DNSLookup.spfHierarchy(domain, 1);
             List<ParagraphLine> traversedTree= DNSLookup.traverse(rootNode);
             if(!traversedTree.isEmpty()) {
-                Paragraph totalLookups = new Paragraph("\n\nNumber of lookups: " + ParagraphLine.totalLookups + "\n\n");
-                report.add(totalLookups);
-
+                report.add(new Paragraph("Number of lookups: " + ParagraphLine.totalLookups + "\n\n"));
 
                 for (ParagraphLine p : traversedTree
                 ) {
@@ -161,10 +159,7 @@ public class PdfWriterClass {
         dkimTable.addCell("List of DKIM keys");
 
         if(dkimKeys != null && !dkimKeys.isEmpty()) {
-            for (String s : dkimKeys
-            ) {
-                dkimTable.addCell(s);
-            }
+            dkimKeys.forEach(dkimTable::addCell);
         }
         else{
             return null;
@@ -183,13 +178,12 @@ public class PdfWriterClass {
             dmarcTable.addCell("Type");
             dmarcTable.addCell("Record");
 
-            for (Record r: dmarcLookup
-                 ) {
-                dmarcTable.addCell(r.getName().toString());
+            dmarcLookup.forEach(rcrd -> {
+                dmarcTable.addCell(rcrd.getName().toString());
                 dmarcTable.addCell("IN");
-                dmarcTable.addCell(recordToText(r.getType()));
-                dmarcTable.addCell(r.rdataToString());
-            }
+                dmarcTable.addCell(recordToText(rcrd.getType()));
+                dmarcTable.addCell(rcrd.rdataToString());
+            });
             return dmarcTable;
         }
         return null;
@@ -210,14 +204,12 @@ public class PdfWriterClass {
             recordCell.addElement(new Chunk("Record"));
             mxTable.addCell(recordCell);
 
-            for (MXRecord mx : mxLookup
-            ) {
-                mxTable.addCell(mx.getName().toString());
+            mxLookup.forEach(rcrd -> {
+                mxTable.addCell(rcrd.getName().toString());
                 mxTable.addCell("IN");
-                mxTable.addCell(recordToText(mx.getType()));
-                mxTable.addCell(mx.getAdditionalName().toString());
-            }
-
+                mxTable.addCell(recordToText(rcrd.getType()));
+                mxTable.addCell(rcrd.getAdditionalName().toString());
+            });
             return mxTable;
         }
         return null;
